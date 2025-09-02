@@ -6,7 +6,7 @@ const main = document.getElementById("main")
 
 async function getMovieData(title) {
     try {
-        const res = await fetch(`http://www.omdbapi.com/?apikey=2b580389&s=${title}`)
+        const res = await fetch(`https://www.omdbapi.com/?apikey=2b580389&s=${title}`)
         if (!res.ok) {
             throw Error("Something went wrong")
         }
@@ -20,7 +20,7 @@ async function getMovieData(title) {
 
 async function getMovieDetails(imdbId) {
     try {
-        const res = await fetch(`http://www.omdbapi.com/?apikey=2b580389&i=${imdbId}`)
+        const res = await fetch(`https://www.omdbapi.com/?apikey=2b580389&i=${imdbId}`)
         if (!res.ok) {
             throw Error("Something went wrong")
         }
