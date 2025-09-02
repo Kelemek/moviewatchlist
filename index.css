@@ -48,6 +48,8 @@ nav a {
     border: 0;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
     color: #A5A5A5;
     background: url("images/search.png") no-repeat 10px center;
     background-color:#585858;    
