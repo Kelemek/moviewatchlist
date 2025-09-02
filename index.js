@@ -11,10 +11,16 @@ async function getMovieData(title) {
             throw Error("Something went wrong")
         }
         const data = await res.json()
-        placeHolder.style.visibility = "hidden"
+        if (data.Response === "False") {
+            throw Error("Unable to find what you are looking for. Please try another search.")
+        }
+        placeHolder.style.visibility = "hidden"  
         renderHtml(data.Search)
     } catch(err) {
         console.error(err.message)
+        placeHolder.style.visibility = "visible"
+        placeHolder.innerHTML = `<b class="placeholderError">${err.message}</b>`
+        searchTxt.value = "Searching something with no data.."
     }
 }
 

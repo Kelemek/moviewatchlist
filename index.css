@@ -97,6 +97,35 @@ main {
     color: #2E2E2F;
 }
 
+.placeholderError {
+    font-weight: 900;
+    font-size: 1rem;
+    color: #656565;
+    width: 60vw;
+    text-align: justify;
+    text-align-last: center;
+}
+
+.placeholderEmpty p {
+    font-weight: 700;
+    font-size: 1.125rem !important;
+    color: #787878 !important;
+}
+
+.placeholderEmpty a {
+    color: white;
+    text-decoration: none;    
+}  
+
+.placeholderEmpty img {
+    height: 1em;
+    width: 1em;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: -1.4em;
+}  
+
+
 .movie-div {
     display: flex;
     border-bottom: 1.5px solid #2C2C2C ;
@@ -157,7 +186,7 @@ main {
 .movie-data .plot-row {
     color: #A5A5A5;
     font-weight: 400;
-    font-size: 0.875.rem;
+    font-size: 0.875rem;
 }
 
 .movie-data p {
