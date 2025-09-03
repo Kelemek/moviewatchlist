@@ -1,8 +1,19 @@
-
 const searchBtn = document.getElementById("search-btn")
 const searchTxt = document.getElementById('search-txt')
 const placeHolder = document.getElementById('placeholder')
 const main = document.getElementById("main")
+
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname === "/watchlist.html") {
+        const watchlistFromLocalStorage = JSON.parse(localStorage.getItem("watchlist"))
+        if (!watchlistFromLocalStorage || watchlistFromLocalStorage.length === 0) {
+            placeHolder.classList.add('visible')
+        } else {
+            renderHtml(watchlistFromLocalStorage)
+            placeHolder.classList.remove('visible')
+        }
+    }
+})
 
 async function getMovieData(title) {
     try {
@@ -14,7 +25,7 @@ async function getMovieData(title) {
         if (data.Response === "False") {
             throw Error("Unable to find what you are looking for. Please try another search.")
         }
-        placeHolder.style.visibility = "hidden"  
+        placeHolder.style.visibility = "hidden" 
         renderHtml(data.Search)
     } catch(err) {
         console.error(err.message)
@@ -31,7 +42,6 @@ async function getMovieDetails(imdbId) {
             throw Error("Something went wrong")
         }
         const data = await res.json()
-        console.log(data)
         return data
     } catch(err) {
         console.error(err.message)
@@ -45,6 +55,42 @@ searchBtn.addEventListener("click", function(){
 searchTxt.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         getMovieData(searchTxt.value)
+    }
+})
+
+document.addEventListener('click', function(e){
+    if(e.target.dataset.watch){
+        const watchlistFromLocalStorage = JSON.parse( localStorage.getItem("watchlist") )
+        let watchlist = []
+        let watchListItem = {}
+        if (watchlistFromLocalStorage) {
+            watchListItem = {imdbID: e.target.dataset.watch} 
+            watchlist = watchlistFromLocalStorage
+            if (!watchlist.some(item => item.imdbID === watchListItem.imdbID)) {
+                watchlist.push(watchListItem) 
+                e.target.innerHTML = "<p>Added to list</p>"
+            } else {
+                e.target.innerHTML = "<p>Already added</p>"
+            }               
+        } else {
+            watchListItem = {imdbID: e.target.dataset.watch} 
+            watchlist.push(watchListItem)    
+        }
+        localStorage.setItem("watchlist", JSON.stringify(watchlist))     
+    } 
+    
+    if (e.target.dataset.remove){
+        const watchlistFromLocalStorage = JSON.parse( localStorage.getItem("watchlist") ) || []
+        let watchlist = watchlistFromLocalStorage.filter(watch => watch.imdbID !== e.target.dataset.remove)
+        if (watchlist.length === 0) {
+            placeHolder.classList.add('visible')
+            window.location.reload()
+        } else {
+            placeHolder.classList.remove('visible')
+        }
+        localStorage.setItem("watchlist", JSON.stringify(watchlist))        
+        renderHtml(watchlist)
+        
     }
 })
 
@@ -64,10 +110,17 @@ async function renderHtml(movieSearch){
                     <div class="details-row">
                         <p class="movie-details">${movieDetails.Runtime}</p>
                         <p class="movie-details">${movieDetails.Genre}</p>
-                        <button class="movie-details">
-                            <img src="images/add.png">
-                            Watchlist
-                        </button>
+                        ${
+                            window.location.pathname === "/watchlist.html"
+                            ? `<button class="movie-details" data-remove=${movieDetails.imdbID}>
+                                <img src="images/remove.png">
+                                Remove
+                            </button>`
+                            : `<button class="movie-details" data-watch=${movieDetails.imdbID}>
+                                <img src="images/add.png">
+                                Watchlist
+                            </button>`
+                        }
                     </div>
                     <div class="plot-row">
                         ${movieDetails.Plot}

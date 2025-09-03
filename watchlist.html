@@ -6,7 +6,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body class="watchlist">
         <header>
             <nav>
                 <div class="header">
@@ -14,10 +14,14 @@
                     <a href="index.html">Search for films</a>
                 </div>
             </nav>
+            <div class="search" style="display: none;">
+                <input id="search-txt" type="text">
+                <button id="search-btn">Search</button>
+            </div>
         </header>
         <main id="main">
             <div id="placeholder" class="placeholderEmpty">
-                <p>Your watchlist is looking a little empty...</p> 
+                <p>Your watchlist is a little empty...</p> 
                 <a href="index.html"><img src="images/add.png">Lets add some films!</a>
              </div>
         </main>

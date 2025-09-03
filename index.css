@@ -10,8 +10,8 @@ nav {
     display: flex;
     justify-content: center;
     background-image: url("images/header.png");
-
-
+    
+    
 }
 
 nav .header {
@@ -73,8 +73,8 @@ main {
     height: 65svh;
     width: 75vw;
     margin: auto;
-
-
+    
+    
 }
 
 #placeholder {
@@ -108,8 +108,8 @@ main {
 
 .placeholderEmpty p {
     font-weight: 700;
-    font-size: 1.125rem !important;
     color: #787878 !important;
+    margin-left: 1em;
 }
 
 .placeholderEmpty a {
@@ -125,6 +125,13 @@ main {
     margin-right: -1.4em;
 }  
 
+body.watchlist #placeholder {
+    display: none;
+}
+
+body.watchlist #placeholder.visible {
+    display: flex;
+}
 
 .movie-div {
     display: flex;
