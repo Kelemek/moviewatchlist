@@ -111,7 +111,7 @@ async function renderHtml(movieSearch){
                         <p class="movie-details">${movieDetails.Runtime}</p>
                         <p class="movie-details">${movieDetails.Genre}</p>
                         ${
-                            window.location.pathname === "/watchlist.html"
+                            (window.location.pathname === "/watchlist" || window.location.pathname === "/watchlist.html")
                             ? `<button class="movie-details" data-remove=${movieDetails.imdbID}>
                                 <img src="images/remove.png">
                                 Remove
