@@ -41,7 +41,7 @@ nav a {
 }
 
 .search input {   
-    width: 60vw;
+    width: 50vw;
     height: 40px;
     padding-left: 35px;
     font-size: 1rem;
@@ -58,7 +58,7 @@ nav a {
 
 
 .search button {
-    width: 15vw;
+    width: 25vw;
     height: 40px;
     border: 0;
     border-top-right-radius: 6px;
@@ -198,4 +198,17 @@ body.watchlist #placeholder.visible {
 
 .movie-data p {
     margin: 0;
+}
+
+@media (min-width: 768px){
+   .search button {
+        width: 15vw;
+   }
+   .search input {
+        width: 60vw;
+   } 
+   nav h1 {
+        font-size: 3rem;
+    }
+
 }
