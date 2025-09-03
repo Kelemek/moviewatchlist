@@ -10,8 +10,6 @@ nav {
     display: flex;
     justify-content: center;
     background-image: url("images/header.png");
-    
-    
 }
 
 nav .header {
@@ -55,8 +53,6 @@ nav a {
     background-color:#585858;    
 }
 
-
-
 .search button {
     width: 25vw;
     height: 40px;
@@ -66,15 +62,21 @@ nav a {
     background-color: #4B4B4B;
     color: white;
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: 1rem;
+}
+
+.search input, .search button {
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0 1em;
+    margin: 0;
+    line-height: 40px;
 }
 
 main {
     height: 65svh;
     width: 75vw;
-    margin: auto;
-    
-    
+    margin: auto; 
 }
 
 #placeholder {
@@ -82,10 +84,8 @@ main {
     flex-direction: column;
     height: 65svh;
     align-items: center;
-    justify-content: center;
-    
+    justify-content: center;  
 }
-
 
 #placeholder img {
     width: 70px;
@@ -138,7 +138,6 @@ body.watchlist #placeholder.visible {
     border-bottom: 1.5px solid #2C2C2C ;
     padding: 1.5em 0;
     gap: 1.5em;
-
 }
 
 .movie-poster {
@@ -204,9 +203,11 @@ body.watchlist #placeholder.visible {
    .search button {
         width: 15vw;
    }
+
    .search input {
         width: 60vw;
    } 
+
    nav h1 {
         font-size: 3rem;
     }

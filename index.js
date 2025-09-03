@@ -96,12 +96,13 @@ document.addEventListener('click', function(e){
 })
 
 async function renderHtml(movieSearch){
+    console.log(movieSearch)
     let returnHtml = ""
     for (const movie of movieSearch) {
         const movieDetails = await getMovieDetails(movie.imdbID)
         returnHtml += `
         <div class="movie-div">
-            <img src="${movieDetails.Poster}" class="movie-poster">
+            <img src="${movieDetails.Poster}" class="movie-poster" alt="${movieDetails.Title}">
                 <div class="movie-data">
                     <div class="title-row">
                         <p class="movie-title">${movieDetails.Title}</p>
@@ -114,11 +115,11 @@ async function renderHtml(movieSearch){
                         ${
                             (window.location.pathname === "/watchlist" || window.location.pathname === "/watchlist.html")
                             ? `<button class="movie-details" data-remove=${movieDetails.imdbID}>
-                                <img src="images/remove.png">
+                                <img src="images/remove.png" alt="remove icon">
                                 Remove
                             </button>`
                             : `<button class="movie-details" data-watch=${movieDetails.imdbID}>
-                                <img src="images/add.png">
+                                <img src="images/add.png" alt="add icon">
                                 Watchlist
                             </button>`
                         }
