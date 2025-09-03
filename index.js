@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function getMovieData(title) {
     try {
-        const res = await fetch(`https://www.omdbapi.com/?apikey=2b580389&s=${title}`)
+        const res = await fetch(`https://www.omdbapi.com/?apikey=2b580389&s=${title}&type=movie`)
         if (!res.ok) {
             throw Error("Something went wrong")
         }
@@ -48,12 +48,14 @@ async function getMovieDetails(imdbId) {
 }
 
 searchBtn.addEventListener("click", function(){
-    getMovieData(searchTxt.value)
+    const encodedQuery = encodeURIComponent(searchTxt.value)
+    getMovieData(encodedQuery)
 })
 
 searchTxt.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
-        getMovieData(searchTxt.value)
+        const encodedQuery = encodeURIComponent(searchTxt.value)
+        getMovieData(encodedQuery)
     }
 })
 
