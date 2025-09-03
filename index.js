@@ -4,7 +4,7 @@ const placeHolder = document.getElementById('placeholder')
 const main = document.getElementById("main")
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.pathname === "/watchlist.html") {
+    if (window.location.pathname === "/watchlist.html" || window.location.pathname === "/watchlist") {
         const watchlistFromLocalStorage = JSON.parse(localStorage.getItem("watchlist"))
         if (!watchlistFromLocalStorage || watchlistFromLocalStorage.length === 0) {
             placeHolder.classList.add('visible')
