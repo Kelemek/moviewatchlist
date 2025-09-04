@@ -223,7 +223,7 @@ body.watchlist #placeholder.visible {
     transparent 12px
   );
   background-size: 120px 6px;
-\  z-index: 1;
+  z-index: 1;
 
 }
 
