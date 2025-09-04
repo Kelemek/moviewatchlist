@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function getMovieData(title) {
     try {
+        const filmstrip = document.querySelector('.filmstrip')
+        if (filmstrip) filmstrip.classList.add('animate')
         const res = await fetch(`https://www.omdbapi.com/?apikey=2b580389&s=${title}&type=movie`)
         if (!res.ok) {
             throw Error("Something went wrong")
@@ -25,8 +27,10 @@ async function getMovieData(title) {
         if (data.Response === "False") {
             throw Error("Please try another search.")
         }
-        placeHolder.style.visibility = "hidden" 
+        
         renderHtml(data.Search)
+        // placeHolder.style.visibility = "hidden" 
+
     } catch(err) {
         console.error(err.message)
         placeHolder.style.visibility = "visible"
@@ -49,6 +53,8 @@ async function getMovieDetails(imdbId) {
 
 searchBtn.addEventListener("click", function(){
     const encodedQuery = encodeURIComponent(searchTxt.value)
+    const filmstrip = document.querySelector('.filmstrip')
+    if (filmstrip) filmstrip.classList.add('animate')
     getMovieData(encodedQuery)
 })
 

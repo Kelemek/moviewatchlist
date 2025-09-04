@@ -199,6 +199,80 @@ body.watchlist #placeholder.visible {
     margin: 0;
 }
 
+.filmstrip {
+  width: 120px;
+  height: 60px;
+  background-color: black;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.sprockets {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(
+    to left,
+    #6d6d6d 0px,
+    #6d6d6d 0px,
+ 4px,
+    transparent 4px,
+    transparent 12px
+  );
+  background-size: 120px 6px;
+\  z-index: 1;
+
+}
+
+.sprockets.top {
+    top: 2px;
+}
+
+.sprockets.bottom {
+    bottom: 2px;
+}
+
+.frames {
+  width: 120px;
+  height: 44px;
+  overflow: hidden;
+  position: relative;
+  top: 10px;
+}
+
+.strip {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+}
+
+.frame {
+  width: 40px;
+  height: 40px;
+  background-color: #2E2E2F;
+  border-radius: 10px;
+}
+
+.filmstrip.animate .strip {
+  animation: frameScroll 4s linear infinite;
+}
+.filmstrip.animate .sprockets {
+  animation: sprocketScroll 4s linear infinite;
+}
+
+@keyframes frameScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-250px); }
+}
+
+@keyframes sprocketScroll {
+  0%   { background-position: 0 0; }
+  100% { background-position: -250px 0; }
+}
+
 @media (min-width: 768px){
    .search button {
         width: 15vw;
