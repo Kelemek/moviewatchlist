@@ -52,7 +52,7 @@ async function getMovieDetails(imdbId) {
 }
 
 searchBtn.addEventListener("click", function(){
-    const encodedQuery = encodeURIComponent(searchTxt.value)
+    const encodedQuery = encodeURIComponent(searchTxt.value.trim())
     const filmstrip = document.querySelector('.filmstrip')
     if (filmstrip) filmstrip.classList.add('animate')
     getMovieData(encodedQuery)
@@ -60,7 +60,9 @@ searchBtn.addEventListener("click", function(){
 
 searchTxt.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
-        const encodedQuery = encodeURIComponent(searchTxt.value)
+        const encodedQuery = encodeURIComponent(searchTxt.value.trim())
+        const filmstrip = document.querySelector('.filmstrip')
+        if (filmstrip) filmstrip.classList.add('animate')
         getMovieData(encodedQuery)
     }
 })
