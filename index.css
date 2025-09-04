@@ -63,6 +63,7 @@ nav a {
     color: white;
     font-weight: 500;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .search input, .search button {

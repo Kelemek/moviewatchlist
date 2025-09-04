@@ -60,43 +60,41 @@ searchTxt.addEventListener("keydown", function(event) {
 })
 
 document.addEventListener('click', function(e){
-    if(e.target.dataset.watch){
-        const watchlistFromLocalStorage = JSON.parse( localStorage.getItem("watchlist") )
+    const watchBtn = e.target.closest('button[data-watch]')
+    if (watchBtn) {
+        const watchlistFromLocalStorage = JSON.parse(localStorage.getItem("watchlist"))
         let watchlist = []
-        let watchListItem = {}
+        let watchListItem = { imdbID: watchBtn.dataset.watch }
         if (watchlistFromLocalStorage) {
-            watchListItem = {imdbID: e.target.dataset.watch} 
             watchlist = watchlistFromLocalStorage
             if (!watchlist.some(item => item.imdbID === watchListItem.imdbID)) {
-                watchlist.push(watchListItem) 
-                e.target.innerHTML = "<p>Added to list</p>"
+                watchlist.push(watchListItem)
+                watchBtn.innerHTML = "<p>Added to list</p>"
             } else {
-                e.target.innerHTML = "<p>Already added</p>"
-            }               
+                watchBtn.innerHTML = "<p>Already added</p>"
+            }
         } else {
-            watchListItem = {imdbID: e.target.dataset.watch} 
-            watchlist.push(watchListItem)    
+            watchlist.push(watchListItem)
         }
-        localStorage.setItem("watchlist", JSON.stringify(watchlist))     
-    } 
+        localStorage.setItem("watchlist", JSON.stringify(watchlist))
+    }
     
-    if (e.target.dataset.remove){
-        const watchlistFromLocalStorage = JSON.parse( localStorage.getItem("watchlist") ) || []
-        let watchlist = watchlistFromLocalStorage.filter(watch => watch.imdbID !== e.target.dataset.remove)
+    const removeBtn = e.target.closest('button[data-remove]')
+    if (removeBtn) {
+        const watchlistFromLocalStorage = JSON.parse(localStorage.getItem("watchlist")) || []
+        let watchlist = watchlistFromLocalStorage.filter(watch => watch.imdbID !== removeBtn.dataset.remove)
         if (watchlist.length === 0) {
             placeHolder.classList.add('visible')
             window.location.reload()
         } else {
             placeHolder.classList.remove('visible')
         }
-        localStorage.setItem("watchlist", JSON.stringify(watchlist))        
+        localStorage.setItem("watchlist", JSON.stringify(watchlist))
         renderHtml(watchlist)
-        
     }
 })
 
 async function renderHtml(movieSearch){
-    console.log(movieSearch)
     let returnHtml = ""
     for (const movie of movieSearch) {
         const movieDetails = await getMovieDetails(movie.imdbID)
