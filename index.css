@@ -68,7 +68,6 @@ nav a {
 .search input, .search button {
     height: 40px;
     box-sizing: border-box;
-    padding: 0 1em;
     margin: 0;
     line-height: 40px;
 }
